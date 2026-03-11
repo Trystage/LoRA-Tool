@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天数据录入工具</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 聊天数据录入</h1>
+        <form id="dataForm">
+            <!-- 类型输入框（同时也是文件名） -->
+            <div class="form-group">
+                <label for="type">类型<span class="required">*</span></label>
+                <div class="type-selector">
+                    <input type="text" id="type" name="type" list="type-options" placeholder="选择或输入新类型" required>
+                    <datalist id="type-options"></datalist>
+                </div>
+                <small>选择已有类型（即 data/ 下的 .json 文件），或输入新名称自动创建文件</small>
+            </div>
+
+            <div class="form-group">
+                <label for="instruction">指令 / 问题 <span class="required">*</span></label>
+                <textarea id="instruction" name="instruction" rows="2" placeholder="例如：lm是什么意思？" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="input">上下文 / 额外输入 <span class="optional">（可选）</span></label>
+                <textarea id="input" name="input" rows="2" placeholder="如果有多轮对话，这里放上一轮的内容，否则留空"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="output">回答 <span class="required">*</span></label>
+                <textarea id="output" name="output" rows="3" placeholder="例如：low mid 的缩写，指起床战争地图中心的岛。" required></textarea>
+            </div>
+            <button type="submit" id="submitBtn">💾 保存</button>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
